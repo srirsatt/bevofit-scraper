@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
       
-      - run: npm install ts-node typescript --save-dev
+      - run: npm ci
 
       - run: npm run scrape
         env: 
