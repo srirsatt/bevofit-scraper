@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "scrape": "npx ts-node scrape.ts"
+    "scrape": "node --loader ts-node/esm ./scrape.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.81.1",
