@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = process.env.SUPABASE_KEY;
+const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
 if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
@@ -53,18 +53,17 @@ async function scrapeHours() {
             sun,
             seasonLabel
         });
-
-        return hoursData;
     })
+    return hoursData;
 }
 
 async function scrapeFacilityMeta(facilityUrl) {
     const res = await fetch(facilityUrl);
-    const html = res.text();
+    const html = await res.text();
     const $ = cheerio.load(html);
 
     function extractListAfterHeading(headingText) {
-        const heading = $('h2', 'h3', 'h4')
+        const heading = $('h2, h3, h4')
             .filter((i, el) => $(el).text().includes(headingText))
             .first();
 
@@ -122,7 +121,7 @@ async function main() {
             console.log("scraping metadata from ", facility.facility_url);
             const meta = await scrapeFacilityMeta(facility.facility_url);
 
-            const { erorr: mErr } = await supabase.from('facility_meta').insert({
+            const { error: mErr } = await supabase.from('facility_meta').insert({
                 facility_id: facility.id,
                 activities: meta.activities,
                 features: meta.features,
