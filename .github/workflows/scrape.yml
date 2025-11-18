@@ -18,7 +18,7 @@ jobs:
       
       - run: npm install ts-node typescript --save-dev
 
-      - run: npx ts-node scrape.ts
+      - run: npm run scrape
         env: 
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

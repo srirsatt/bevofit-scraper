@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "scrape": "node scrape.ts"
+    "scrape": "npx ts-node scrape.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.81.1",
