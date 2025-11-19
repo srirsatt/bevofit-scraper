@@ -17,6 +17,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 const TARGET_FACILITIES = [
     "Gregory Gym",
     "Recreational Sports Center",
+    "Bellmont Hall",
     "Caven Clark Courts",
     "Caven Clark Track/Turf",
     "Natatorium",
@@ -24,6 +25,7 @@ const TARGET_FACILITIES = [
     "Wright Whitaker Sports Complex",
     "Whitaker Courts"
 ];
+
 
 async function scrapeHours() {
     const res = await fetch("https://www.utrecsports.org/hours");
@@ -107,6 +109,8 @@ async function scrapeFacilityMeta(facilityUrl: string) {
 async function main() {
     console.log("Scraping hours right now.");
     const hoursRows = await scrapeHours();
+    console.log("rows found:", hoursRows.length);
+    console.table(hoursRows.map(r => ({ name: r.name, link: r.link ?? "(none)" })).slice(0, 10));
     console.log(hoursRows);
 
     for (const row of hoursRows) {
