@@ -16,7 +16,13 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
 
 const TARGET_FACILITIES = [
     "Gregory Gym",
-    "Recreational Sports Center"
+    "Recreational Sports Center",
+    "Caven Clark Courts",
+    "Caven Clark Track/Turf",
+    "Natatorium",
+    "Outdoor Lap Pool",
+    "Wright Whitaker Sports Complex",
+    "Whitaker Courts"
 ];
 
 async function scrapeHours() {
