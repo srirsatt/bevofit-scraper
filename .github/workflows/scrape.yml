@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '20'
       
-      - run: npm c
+      - run: npm install
 
       - run: npm run scrape
         env: 
